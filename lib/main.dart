@@ -91,6 +91,8 @@ class _SpeechScreenState extends State<SpeechScreen> {
       if (available) {
         setState(() => _isListening = true);
         speech.listen(
+          listenFor: Duration(seconds: 30),
+          pauseFor: Duration(seconds: 5),
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
             if (val.hasConfidenceRating || val.confidence > 0) {
