@@ -35,15 +35,15 @@ class _SpeechScreenState extends State<SpeechScreen> {
         textStyle:
             const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
     'voice': HighlightedWord(
-        onTap: () => print('flutter'),
+        onTap: () => print('voice'),
         textStyle:
             const TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
     'Hello': HighlightedWord(
-        onTap: () => print('flutter'),
+        onTap: () => print('Hello'),
         textStyle:
             const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold)),
     'Hey': HighlightedWord(
-        onTap: () => print('flutter'),
+        onTap: () => print('Hey'),
         textStyle:
             const TextStyle(color: Colors.orange, fontWeight: FontWeight.bold))
   };
@@ -93,7 +93,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
         speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
-            if (val.hasConfidenceRating && val.confidence > 0) {
+            if (val.hasConfidenceRating || val.confidence > 0) {
               _confidence = val.confidence;
             }
           }),
@@ -103,6 +103,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
           _isListening = false;
           speech.stop();
         });
+        _listen();
       }
     }
   }
